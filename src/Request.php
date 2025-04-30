@@ -3,7 +3,7 @@ namespace BatAPI;
 
 use BatAPI\Interfaces\Bootstrappable;
 
-class Request implements Bootstrappable
+abstract class Request implements Bootstrappable
 {
     //  =========================== PARAMS ===========================
 

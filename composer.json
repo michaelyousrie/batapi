@@ -5,8 +5,12 @@
     "license": "MIT",
     "autoload": {
         "psr-4": {
-            "BatAPI\\": "src/"
-        }
+            "BatAPI\\": "src/",
+            "App\\": "app/"
+        },
+        "files": [
+            "src/Utils/functions.php"
+        ]
     },
     "authors": [
         {

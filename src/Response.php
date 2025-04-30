@@ -2,7 +2,7 @@
 
 namespace BatAPI;
 
-class Response
+abstract class Response
 {
     //  =========================== PARAMS ===========================
 
@@ -42,6 +42,7 @@ class Response
     /**
      * Return a 404 not found error
      *
+     * @param array $data
      * @return string
      */
     public static function notFound(array $data = []): string
@@ -50,7 +51,7 @@ class Response
     }
 
     /**
-     * Return a special 500 debugging response. Useful for development.
+     * Return a special 500-debugging response. Useful for development.
      *
      * @param array $data
      * @return string

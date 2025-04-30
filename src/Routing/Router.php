@@ -5,7 +5,7 @@ namespace BatAPI\Routing;
 use Closure;
 use BatAPI\Routing\Route;
 
-class Router
+abstract class Router
 {
     //  =========================== PARAMS ===========================
 
@@ -22,10 +22,10 @@ class Router
      * Adds a GET request route listener.
      *
      * @param string $uri The URI to listen for. e.g. /test
-     * @param string|Closure $callable The Callable to be executed when the URI is requested.
+     * @param array|Closure $callable The Callable to be executed when the URI is requested.
      * @return void
      */
-    public static function get(string $uri, string | Closure $callable): void
+    public static function get(string $uri, array | Closure $callable): void
     {
         self::addRoute('GET', $uri, $callable);
     }
@@ -34,10 +34,10 @@ class Router
      * Adds a POST request route listener.
      *
      * @param string $uri The URI to listen for. e.g. /test
-     * @param string|Closure $callable The Callable to be executed when the URI is requested.
+     * @param array|Closure $callable The Callable to be executed when the URI is requested.
      * @return void
      */
-    public static function post(string $uri, string | Closure $callable): void
+    public static function post(string $uri, array | Closure $callable): void
     {
         self::addRoute('POST', $uri, $callable);
     }
@@ -46,10 +46,10 @@ class Router
      * Adds a PUT request route listener.
      *
      * @param string $uri The URI to listen for. e.g. /test
-     * @param string|Closure $callable The Callable to be executed when the URI is requested.
+     * @param array|Closure $callable The Callable to be executed when the URI is requested.
      * @return void
      */
-    public static function put(string $uri, string | Closure $callable): void
+    public static function put(string $uri, array | Closure $callable): void
     {
         self::addRoute('PUT', $uri, $callable);
     }
@@ -58,10 +58,10 @@ class Router
      * Adds a PATCH request route listener.
      *
      * @param string $uri The URI to listen for. e.g. /test
-     * @param string|Closure $callable The Callable to be executed when the URI is requested.
+     * @param array|Closure $callable The Callable to be executed when the URI is requested.
      * @return void
      */
-    public static function patch(string $uri, string | Closure $callable): void
+    public static function patch(string $uri, array | Closure $callable): void
     {
         self::addRoute('PATCH', $uri, $callable);
     }
@@ -70,10 +70,10 @@ class Router
      * Adds a DELETE request route listener.
      *
      * @param string $uri The URI to listen for. e.g. /test
-     * @param string|Closure $callable The Callable to be executed when the URI is requested.
+     * @param array|Closure $callable The Callable to be executed when the URI is requested.
      * @return void
      */
-    public static function delete(string $uri, string | Closure $callable): void
+    public static function delete(string $uri, array | Closure $callable): void
     {
         self::addRoute('DELETE', $uri, $callable);
     }
@@ -113,12 +113,6 @@ class Router
     {
         $uri = rtrim($uri, '/');
 
-        $callableType = 'string';
-
-        if ($callable instanceof Closure) {
-            $callableType = 'closure';
-        }
-
-        self::$routes[$method][] = new Route($uri, $callable, $callableType);
+        self::$routes[$method][] = new Route($uri, $callable);
     }
 }

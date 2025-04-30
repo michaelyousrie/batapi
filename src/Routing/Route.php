@@ -2,13 +2,18 @@
 
 namespace BatAPI\Routing;
 
+use Closure;
+use BatAPI\Controller;
+
+use function BatAPI\Utils\dd;
+
 class Route
 {
     //  =========================== PARAMS ===========================
 
     //  =========================== PUBLIC METHODS ===========================
 
-    public function __construct(private string $uri, private mixed $callable, private string $callableType)
+    public function __construct(private string $uri, private mixed $callable)
     {
         //
     }
@@ -43,11 +48,15 @@ class Route
 
     public function call()
     {
-        if ($this->callableType === 'closure') {
+        if ($this->callable instanceof Closure) {
             return call_user_func($this->callable);
         }
 
-        // TODO: if the callable type is not a closure.
+        if (is_array($this->callable)) {
+            return Controller::determine($this->callable);
+        }
+
+        return dd('Unknown Callable type for this route.');
     }
 
     //  =========================== INTERNAL METHODS ===========================

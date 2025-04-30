@@ -4,7 +4,7 @@ namespace BatAPI;
 use BatAPI\Routing\Router;
 use BatAPI\Interfaces\Bootstrappable;
 
-class App implements Bootstrappable
+abstract class App implements Bootstrappable
 {
     //  =========================== PARAMS ===========================
 
