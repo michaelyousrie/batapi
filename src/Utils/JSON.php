@@ -2,7 +2,7 @@
 
 namespace BatAPI\Utils;
 
-class JSON
+abstract class JSON
 {
     //  =========================== PARAMS ===========================
 
