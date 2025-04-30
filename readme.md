@@ -1,6 +1,11 @@
-# BatAPI Skeleton
+# BatAPI
 
 A micro PHP API Skeleton that is as versatile as batman's arsenal.
+
+
+## What does BatAPI mean?
+
+It comes from Batman's world. Every tool in the batman arsenal was like "BatMobile", "BatComputer", "Batarang", "BatClaw", .. You get the idea.
 
 ## Description
 
