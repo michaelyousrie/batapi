@@ -111,6 +111,8 @@ class Router
      */
     private static function addRoute(string $method, string $uri, mixed $callable): void
     {
+        $uri = rtrim($uri, '/');
+
         $callableType = 'string';
 
         if ($callable instanceof Closure) {

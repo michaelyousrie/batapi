@@ -111,7 +111,7 @@ class Request implements Bootstrappable
 
     public static function uri(): string
     {
-        return self::$headers['PHP_SELF'] ?? '/';
+        return rtrim(self::$headers['PHP_SELF'], '/');
     }
 
     //  =========================== INTERNAL METHODS ===========================
