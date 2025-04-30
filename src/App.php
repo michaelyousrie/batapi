@@ -79,9 +79,11 @@ class App implements Bootstrappable
             if ($route->uriMatches(Request::uri())) {
                 return $route->call();
             }
-
-            return Response::notFound();
         }
+
+        return Response::notFound([
+            'message' => 'URL Not Found!'
+        ]);
     }
 
     //  =========================== INTERNAL METHODS ===========================
