@@ -56,7 +56,7 @@ class Route
             return Controller::determine($this->callable);
         }
 
-        return dd('Unknown Callable type for this route.');
+        dd('Unknown Callable type for this route.');
     }
 
     //  =========================== INTERNAL METHODS ===========================
