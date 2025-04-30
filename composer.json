@@ -1,0 +1,19 @@
+{
+    "name": "batapi/batapi",
+    "description": "A micro PHP framework that is as versatile as batman's arsenal.",
+    "type": "library",
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "BatAPI\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "michaelyousrie",
+            "email": "michaelyousrie@gmail.com"
+        }
+    ],
+    "minimum-stability": "stable",
+    "require": {}
+}
