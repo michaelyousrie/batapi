@@ -2,6 +2,8 @@
 
 namespace BatAPI;
 
+use BatAPI\Utils\JSON;
+
 abstract class Logger
 {
     //  =========================== PARAMS ===========================
@@ -32,7 +34,7 @@ abstract class Logger
 
     private static function format(array $data, string $level): string
     {
-        $encodedData = json_encode($data, JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE);
+        $encodedData = JSON::encode($data);
         $time = date('Y-m-d H:i:s');
 return <<<TEXT
 [{$time}] {$level}.INFO: {$encodedData}\n

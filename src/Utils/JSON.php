@@ -1,0 +1,30 @@
+<?php
+
+namespace BatAPI\Utils;
+
+class JSON
+{
+    //  =========================== PARAMS ===========================
+
+    //  =========================== PUBLIC METHODS ===========================
+
+    /**
+     * @param array $data
+     * @return string
+     */
+    public static function encode(array $data): string
+    {
+        return json_encode($data, JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT);
+    }
+
+    /**
+     * @param string $json
+     * @return array
+     */
+    public static function decode(string $json): array
+    {
+        return json_decode($json, associative: true);
+    }
+
+    //  =========================== INTERNAL METHODS ===========================
+}

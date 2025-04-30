@@ -2,6 +2,8 @@
 
 namespace BatAPI;
 
+use BatAPI\Utils\JSON;
+
 abstract class Response
 {
     //  =========================== PARAMS ===========================
@@ -25,7 +27,7 @@ abstract class Response
             header("{$header}: {$value}");
         }
 
-        return json_encode($data, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES | JSON_PRETTY_PRINT);
+        return JSON::encode($data);
     }
 
     /**
