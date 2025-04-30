@@ -2,3 +2,5 @@ vendor
 composer.lock
 .vscode
 .idea
+Logs/*
+!.gitkeep

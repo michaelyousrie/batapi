@@ -6,7 +6,7 @@
     "autoload": {
         "psr-4": {
             "BatAPI\\": "src/",
-            "App\\": "app/"
+            "App\\": "App/"
         },
         "files": [
             "src/Utils/functions.php"

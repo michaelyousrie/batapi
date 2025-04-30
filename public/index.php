@@ -6,6 +6,6 @@ use BatAPI\App;
 
 App::bootstrap();
 
-require_once "../app/routes.php";
+require_once "../App/Routes.php";
 
 echo App::start();

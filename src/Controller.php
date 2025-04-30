@@ -9,7 +9,7 @@ abstract class Controller
 
     //  =========================== PUBLIC METHODS ===========================
 
-    public static function determine(array $identifier)
+    public static function determine(array $identifier): string
     {
         if (!($identifier['0'] ?? false) or !($identifier[1] ?? false)) {
             dd("Invalid callable controller identifier. The identifier should be passed as an array with the firest element being the full class name, the second element being the method name as a string.");
