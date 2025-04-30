@@ -46,7 +46,7 @@ class Route
         return strtolower($this->uri()) === strtolower($uri);
     }
 
-    public function call()
+    public function call(): string
     {
         if ($this->callable instanceof Closure) {
             return call_user_func($this->callable);
@@ -57,6 +57,7 @@ class Route
         }
 
         dd('Unknown Callable type for this route.');
+        return false;
     }
 
     //  =========================== INTERNAL METHODS ===========================

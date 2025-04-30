@@ -73,7 +73,7 @@ abstract class App implements Bootstrappable
      *
      * @return string
      */
-    public static function start()
+    public static function start(): string
     {
         foreach(Router::routesFor(Request::method()) as $route) {
             if ($route->uriMatches(Request::uri())) {

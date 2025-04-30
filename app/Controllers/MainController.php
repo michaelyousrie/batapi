@@ -7,6 +7,6 @@ class MainController
 {
     public function index()
     {
-        return Response::success(['message' => "I'm the night Controller."]);
+        return Response::success(['message' => "I'm the GET night Controller."]);
     }
 }

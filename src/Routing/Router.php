@@ -92,7 +92,7 @@ abstract class Router
      * Return an array of all registered routes for a specific HTTP Method (GET, POST, PATCH, UPDATE, DELETE)
      *
      * @param string $method
-     * @return array
+     * @return array<Route>
      */
     public static function routesFor(string $method): array
     {
