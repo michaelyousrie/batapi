@@ -2,15 +2,18 @@
 namespace BatAPI;
 
 use BatAPI\Interfaces\Bootstrappable;
-use BatAPI\Utils\Debugger;
 
 class Request implements Bootstrappable
 {
+    //  =========================== PARAMS ===========================
+
     private static array $data = [];
     private static array $query = [];
     private static array $headers = [];
 
     private static string $method = 'GET';
+
+    //  =========================== PUBLIC METHODS ===========================
 
     /**
      * Bootstraps Request Component
@@ -55,8 +58,12 @@ class Request implements Bootstrappable
      * @param mixed $fallback
      * @return mixed
      */
-    public static function query(string $key, mixed $fallback = null): mixed
+    public static function query(?string $key = null, mixed $fallback = null): mixed
     {
+        if (is_null($key)) {
+            return self::$query;
+        }
+
         return self::$query[$key] ?? $fallback;
     }
 
@@ -67,8 +74,12 @@ class Request implements Bootstrappable
      * @param mixed $fallback
      * @return mixed
      */
-    public static function data(string $key, mixed $fallback = null): mixed
+    public static function data(?string $key = null, mixed $fallback = null): mixed
     {
+        if (is_null($key)) {
+            return self::$data;
+        }
+
         return self::$data[$key] ?? $fallback;
     }
 
@@ -79,8 +90,12 @@ class Request implements Bootstrappable
      * @param mixed $fallback
      * @return mixed
      */
-    public static function header(string $key, mixed $fallback = null): mixed
+    public static function header(?string $key = null, mixed $fallback = null): mixed
     {
+        if (is_null($key)) {
+            return self::headers();
+        }
+
         return self::$headers[$key] ?? $fallback;
     }
 
@@ -93,6 +108,13 @@ class Request implements Bootstrappable
     {
         return self::$headers;
     }
+
+    public static function uri(): string
+    {
+        return self::$headers['PHP_SELF'] ?? '/';
+    }
+
+    //  =========================== INTERNAL METHODS ===========================
 
     /**
      * Bootstrap the data array

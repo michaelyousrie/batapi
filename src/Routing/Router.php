@@ -7,12 +7,16 @@ use BatAPI\Routing\Route;
 
 class Router
 {
+    //  =========================== PARAMS ===========================
+
     private static array $routes = [
         'GET'       => [],
         'POST'      => [],
         'PUT'       => [],
         'DELETE'    => []
     ];
+
+    //  =========================== PUBLIC METHODS ===========================
 
     /**
      * Adds a GET request route listener.
@@ -84,6 +88,27 @@ class Router
         return self::$routes;
     }
 
+    /**
+     * Return an array of all registered routes for a specific HTTP Method (GET, POST, PATCH, UPDATE, DELETE)
+     *
+     * @param string $method
+     * @return array
+     */
+    public static function routesFor(string $method): array
+    {
+        return self::$routes[strtoupper($method)];
+    }
+
+    //  =========================== INTERNAL METHODS ===========================
+
+    /**
+     * Register a route
+     *
+     * @param string $method
+     * @param string $uri
+     * @param mixed $callable
+     * @return void
+     */
     private static function addRoute(string $method, string $uri, mixed $callable): void
     {
         $callableType = 'string';

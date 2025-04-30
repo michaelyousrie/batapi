@@ -1,11 +1,16 @@
 <?php
 namespace BatAPI;
 
+use BatAPI\Routing\Router;
 use BatAPI\Interfaces\Bootstrappable;
 
 class App implements Bootstrappable
 {
+    //  =========================== PARAMS ===========================
+
     private static array $configs = [];
+
+    //  =========================== PUBLIC METHODS ===========================
 
     /**
      * Bootstraps a few components of the application to activate all the gears.
@@ -70,6 +75,14 @@ class App implements Bootstrappable
      */
     public static function start()
     {
-        //
+        foreach(Router::routesFor(Request::method()) as $route) {
+            if ($route->uriMatches(Request::uri())) {
+                return $route->call();
+            }
+
+            return Response::notFound();
+        }
     }
+
+    //  =========================== INTERNAL METHODS ===========================
 }

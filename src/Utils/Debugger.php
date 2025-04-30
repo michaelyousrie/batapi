@@ -5,6 +5,10 @@ use BatAPI\Response;
 
 class Debugger
 {
+    //  =========================== PARAMS ===========================
+
+    //  =========================== PUBLIC METHODS ===========================
+
     /**
      * Debug an array of values. The response will be sent as JSON with status code 500.
      *
@@ -15,4 +19,6 @@ class Debugger
     {
         return Response::debug($debuggables);
     }
+
+    //  =========================== INTERNAL METHODS ===========================
 }

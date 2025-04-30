@@ -1,5 +1,6 @@
 <?php
 
+use BatAPI\Response;
 use BatAPI\Routing\Router;
 
-Router::get('/', fn() => "Hello BatAPI!");
+Router::get('/', fn() => Response::success(['hello' => 'world!']));

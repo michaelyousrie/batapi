@@ -4,6 +4,10 @@ namespace BatAPI;
 
 class Response
 {
+    //  =========================== PARAMS ===========================
+
+    //  =========================== PUBLIC METHODS ===========================
+
     /**
      * Return a RAW JSON response
      *
@@ -55,4 +59,6 @@ class Response
     {
         return self::raw($data, 500, ['X_IS_DEBUGGING' => true]);
     }
+
+    //  =========================== INTERNAL METHODS ===========================
 }
