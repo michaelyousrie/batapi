@@ -1,6 +1,6 @@
 {
     "name": "batapi/batapi",
-    "description": "A micro PHP framework that is as versatile as batman's arsenal.",
+    "description": "A micro PHP API Skeleton that is as versatile as batman's arsenal.",
     "type": "library",
     "license": "MIT",
     "autoload": {
