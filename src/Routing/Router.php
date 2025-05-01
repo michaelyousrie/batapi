@@ -3,7 +3,6 @@
 namespace BatAPI\Routing;
 
 use Closure;
-use BatAPI\Routing\Route;
 
 abstract class Router
 {

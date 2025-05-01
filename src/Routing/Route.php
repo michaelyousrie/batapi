@@ -2,20 +2,24 @@
 
 namespace BatAPI\Routing;
 
-use Closure;
 use BatAPI\Controller;
-
+use BatAPI\Request;
+use BatAPI\Validator;
+use Closure;
 use function BatAPI\Utils\dd;
 
 class Route
 {
     //  =========================== PARAMS ===========================
+    private static array $acceptedParamTypes = [];
 
     //  =========================== PUBLIC METHODS ===========================
 
     public function __construct(private string $uri, private mixed $callable)
     {
-        //
+        foreach(array_keys(Validator::regexRules()) as $dataType) {
+            self::$acceptedParamTypes[] = $dataType;
+        }
     }
 
     /**
@@ -43,7 +47,33 @@ class Route
      */
     public function uriMatches(string $uri): bool
     {
-        return strtolower($this->uri()) === strtolower($uri);
+        $acceptedParams = implode("|", self::$acceptedParamTypes);
+        $pattern = preg_replace_callback(
+            "#\{(?<type>{$acceptedParams}):(?<name>\w+)\}#",
+            function ($matches) {
+                $name = $matches['name'];
+                foreach(Validator::regexRules() as $dataType => $pattern) {
+                    if (strtolower($matches['type']) === strtolower($dataType)) {
+                        return "(?<{$name}>{$pattern})";
+                    }
+                }
+
+                return "";
+            },
+            $this->uri
+        );
+
+        $regex = "#^" . $pattern . "$#i";
+
+        if (preg_match($regex, $uri, $matches)) {
+            $params = array_filter($matches, 'is_string', ARRAY_FILTER_USE_KEY);
+
+            foreach($params as $key => $param) {
+                Request::setUrlParam($key, $param);
+            }
+        }
+
+        return (bool) preg_match($regex, $uri);
     }
 
     public function call(): string

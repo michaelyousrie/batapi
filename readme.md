@@ -5,7 +5,7 @@ A micro PHP API Skeleton that is as versatile as batman's arsenal.
 
 ## What does BatAPI mean?
 
-It comes from Batman's world. Every tool in the batman arsenal was like "BatMobile", "BatComputer", "Batarang", "BatClaw", .. You get the idea.
+It comes from Batman's world. Every tool in the batman arsenal was like "BatMobile", "BatComputer", "Batarang", "BatClaw", .. You get the idea.****
 
 ## Description
 
@@ -42,9 +42,9 @@ BatAPI will be a part of your project and will be submitted to source code. "But
 
 - For larger "projects", BatAPI shouldn't be used in the first place. I'm trying to follow the simplest, most convenient, structure to keep BatAPI super simple for its intended use.
 
-## What about updates?
 
-I'm the sole developer of this project. It'll be updated as much as I have free time and fresh ideas.
+## Active development?
+Definitely. I'm actively working on this project and will publish updates almost daily until it's mature enough for me to use personally. 
 
 ## Contributions
 

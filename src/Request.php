@@ -10,6 +10,7 @@ abstract class Request implements Bootstrappable
     private static array $data = [];
     private static array $query = [];
     private static array $headers = [];
+    private static array $urlParams = [];
 
     private static string $method = 'GET';
 
@@ -97,6 +98,39 @@ abstract class Request implements Bootstrappable
         }
 
         return self::$headers[$key] ?? $fallback;
+    }
+
+    /**
+     * @param string $key
+     * @param mixed $value
+     * @return mixed
+     */
+    public static function set(string $key, mixed $value): mixed
+    {
+        return self::$data[$key] = $value;
+    }
+
+    /**
+     * Sets a URL Param that is sent as a dynamic part in the URL. Done automatically by BatAPI.
+     * @param string $key
+     * @param mixed $value
+     * @return mixed
+     */
+    public static function setUrlParam(string $key, mixed $value): mixed
+    {
+        return self::$urlParams[$key] = $value;
+    }
+
+    /**
+     * Fetch a dynamic URL Param.
+     *
+     * @param string $key
+     * @param mixed|null $fallback
+     * @return mixed
+     */
+    public static function urlParam(string $key, mixed $fallback = null): mixed
+    {
+        return self::$urlParams[$key] ?? $fallback;
     }
 
     /**
