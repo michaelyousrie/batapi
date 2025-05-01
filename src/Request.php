@@ -27,7 +27,7 @@ abstract class Request implements Bootstrappable
         self::bootstrapQuery();
         self::bootstrapHeaders();
 
-        self::$method = strtoupper($_SERVER['REQUEST_METHOD'] ?? '') ?? 'GET';
+        self::$method = strtoupper($_SERVER['REQUEST_METHOD'] ?? '') ?: 'GET';
     }
 
     /**
