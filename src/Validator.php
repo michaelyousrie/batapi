@@ -13,7 +13,9 @@ abstract class Validator
         'bool'      => '(true|false)',
         'hex'       => '[0-9a-fA-F]+',
         'slug'      => '[a-zA-Z0-9\-]+',
-        'ip'        => '\d{1,3}\.){3}\d{1,3}|[0-9a-fA-F:]+',
+        'ip'        => '(\d{1,3}\.){3}\d{1,3}|[0-9a-fA-F:]+',
+        'ipv4'      => '(\d{1,3}\.){3}\d{1,3}',
+        'ipv6'      => '[0-9a-fA-F:]+',
         'date'      => '\d{4}-\d{2}-\d{2}',
         'uuid'      => '[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}',
     ];
@@ -40,6 +42,24 @@ abstract class Validator
     public static function regexRules(): array
     {
         return self::$rules;
+    }
+
+    /**
+     * Validate the given $data against a pre-defined validation rule.
+     *
+     * @param string $data
+     * @param string $rule
+     * @return bool
+     */
+    public static function validate(string $data, string $rule): bool
+    {
+        $rule = strtolower($rule);
+
+        if (!array_key_exists($rule, self::$rules)) {
+            return false;
+        }
+
+        return (bool) preg_match('/^(' . self::$rules[$rule] . ')$/', $data);
     }
 
     //  =========================== INTERNAL METHODS ===========================
