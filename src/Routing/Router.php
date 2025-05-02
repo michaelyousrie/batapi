@@ -110,7 +110,7 @@ abstract class Router
      */
     private static function addRoute(string $method, string $uri, mixed $callable): void
     {
-        $uri = rtrim($uri, '/');
+        $uri = "/" . trim($uri, '/');
 
         self::$routes[$method][] = new Route($uri, $callable);
     }
