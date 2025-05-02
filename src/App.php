@@ -20,13 +20,14 @@ abstract class App implements Bootstrappable
     public static function bootstrap(): void
     {
         session_start();
-        Request::bootstrap();
 
-        self::config('APP_NAME', 'New Bat API Applications');
-        self::config('ROOT_PATH', dirname(__DIR__));
+        self::config('ROOT_PATH', dirname(__DIR__)) . DIRECTORY_SEPARATOR;
         self::config('APP_PATH', dirname(__DIR__) . DIRECTORY_SEPARATOR . 'App' . DIRECTORY_SEPARATOR);
         self::config('LOGS_PATH', dirname(__DIR__) . DIRECTORY_SEPARATOR . 'Logs' . DIRECTORY_SEPARATOR);
         self::config('CONTROLLERS_PATH', dirname(__DIR__) . DIRECTORY_SEPARATOR . 'App' . DIRECTORY_SEPARATOR . 'Controllers'. DIRECTORY_SEPARATOR);
+
+        Request::bootstrap();
+        Env::bootstrap();
     }
 
     /**
