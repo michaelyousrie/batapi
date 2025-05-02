@@ -145,7 +145,7 @@ abstract class Request implements Bootstrappable
 
     public static function uri(): string
     {
-        return rtrim(self::$headers['PHP_SELF'], '/');
+        return "/" . trim(self::$headers['PHP_SELF'], '/');
     }
 
     //  =========================== INTERNAL METHODS ===========================

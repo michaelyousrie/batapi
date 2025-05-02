@@ -18,7 +18,7 @@ abstract class Env implements  Bootstrappable
      */
     public static function bootstrap(): void
     {
-        $envFilePath = App::config('ROOT_PATH') . ".env";
+        $envFilePath = Config::get('ROOT_PATH') . ".env";
 
         if (file_exists($envFilePath)) {
             $vars = file_get_contents($envFilePath);

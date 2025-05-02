@@ -8,7 +8,6 @@ abstract class App implements Bootstrappable
 {
     //  =========================== PARAMS ===========================
 
-    private static array $configs = [];
 
     //  =========================== PUBLIC METHODS ===========================
 
@@ -21,56 +20,13 @@ abstract class App implements Bootstrappable
     {
         session_start();
 
-        self::config('ROOT_PATH', dirname(__DIR__)) . DIRECTORY_SEPARATOR;
-        self::config('APP_PATH', dirname(__DIR__) . DIRECTORY_SEPARATOR . 'App' . DIRECTORY_SEPARATOR);
-        self::config('LOGS_PATH', dirname(__DIR__) . DIRECTORY_SEPARATOR . 'Logs' . DIRECTORY_SEPARATOR);
-        self::config('CONTROLLERS_PATH', dirname(__DIR__) . DIRECTORY_SEPARATOR . 'App' . DIRECTORY_SEPARATOR . 'Controllers'. DIRECTORY_SEPARATOR);
+        Config::set('ROOT_PATH', dirname(__DIR__)) . DIRECTORY_SEPARATOR;
+        Config::set('APP_PATH', dirname(__DIR__) . DIRECTORY_SEPARATOR . 'App' . DIRECTORY_SEPARATOR);
+        Config::set('LOGS_PATH', dirname(__DIR__) . DIRECTORY_SEPARATOR . 'Logs' . DIRECTORY_SEPARATOR);
+        Config::set('CONTROLLERS_PATH', dirname(__DIR__) . DIRECTORY_SEPARATOR . 'App' . DIRECTORY_SEPARATOR . 'Controllers'. DIRECTORY_SEPARATOR);
 
         Request::bootstrap();
         Env::bootstrap();
-    }
-
-    /**
-     * Sets or gets a config value.
-     * Config values are shared across the entire application.
-     *
-     * @param string $key The string identifier for the config value.
-     * @param mixed $value The config value.
-     * @return mixed
-     */
-    public static function config(string $key, mixed $value = null): mixed
-    {
-        if (is_null($value)) {
-            return self::getConfig($key);
-        }
-
-        return self::setConfig($key, $value);
-    }
-
-    /**
-     * Fetches a config value.
-     *
-     * @param string $key
-     * @param mixed $fallback The default that should be returned if the config key doesn't exist.
-     * @return mixed
-     */
-    public static function getConfig(string $key, mixed $fallback = null): mixed
-    {
-        return self::$configs[$key] ?? $fallback;
-    }
-
-    /**
-     * Sets a config value
-     *
-     * @param string $key
-     * @param mixed $value
-     * @return mixed The config value that was just set.
-     */
-    public static function setConfig(string $key, mixed $value): mixed
-    {
-        self::$configs[$key] = $value;
-
-        return self::getConfig($key);
     }
 
     /**
