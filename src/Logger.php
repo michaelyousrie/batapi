@@ -10,17 +10,9 @@ abstract class Logger
 
     //  =========================== PUBLIC METHODS ===========================
 
-    /**
-     * Logs an array of data to a file.
-     *
-     * @param string $filename
-     * @param array $data
-     * @param string $level
-     * @return void
-     */
     public static function file(string $filename, array $data, string $level = 'debug'): void
     {
-        $filename = App::config('LOGS_PATH') . $filename . '.log';
+        $filename = Config::get('LOGS_PATH') . $filename . '.log';
         $level = strtolower($level);
 
         if (!file_exists($filename)) {
@@ -28,6 +20,13 @@ abstract class Logger
         }
 
         file_put_contents($filename, self::format($data, $level), FILE_APPEND);
+    }
+
+    public static function dailyFile(string $filename, array $data, string $level = 'debug'): void
+    {
+        $filename = $filename . "_" . date('Y-m-d');
+
+        self::file($filename, $data, $level);
     }
 
     //  =========================== INTERNAL METHODS ===========================

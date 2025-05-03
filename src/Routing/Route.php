@@ -13,6 +13,8 @@ class Route
     //  =========================== PARAMS ===========================
     private static array $acceptedParamTypes = [];
 
+    private array $middlewares = [];
+
     //  =========================== PUBLIC METHODS ===========================
 
     public function __construct(private string $uri, private mixed $callable)
@@ -22,12 +24,6 @@ class Route
         }
     }
 
-    /**
-     * Get or Set the URI of the current route.
-     *
-     * @param string|null $newUri
-     * @return Route | string
-     */
     public function uri(?string $newUri = null): Route | string
     {
         if (is_null($newUri)) {
@@ -39,12 +35,16 @@ class Route
         return $this;
     }
 
-    /**
-     * Check whether the passed uri matches this route's uri
-     *
-     * @param string $uri
-     * @return boolean
-     */
+    public function middlewares(array $middlewares = []): array|Route
+    {
+        if (empty($middlewares)) {
+            return $this->middlewares;
+        }
+
+        $this->middlewares = $middlewares;
+        return $this;
+    }
+
     public function uriMatches(string $uri): bool
     {
         $acceptedParams = implode("|", self::$acceptedParamTypes);
@@ -78,6 +78,11 @@ class Route
 
     public function call(): string
     {
+        foreach($this->middlewares() as $middleware) {
+            $middleware = new $middleware();
+            $middleware->handle();
+        }
+
         if ($this->callable instanceof Closure) {
             return call_user_func($this->callable);
         }
