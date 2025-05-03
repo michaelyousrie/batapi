@@ -43,6 +43,12 @@ BatAPI will be a part of your project and will be submitted to source code. "But
 - For larger "projects", BatAPI shouldn't be used in the first place. I'm trying to follow the simplest, most convenient, structure to keep BatAPI super simple for its intended use.
 
 
+## External packages / tools
+
+BatAPI tries as much as possible to be self-sufficient. No external, third-party packages will ever be used.
+
+Writing all of its own internal components from scratch using pure PHP. That way, No dependency on third party is ever needed, no external, out of hand, security threats can be present (which means the only danger we face is our own) and finally, less code to maintain.
+
 ## Active development?
 Definitely. I'm actively working on this project and will publish updates almost daily until it's mature enough for me to use personally. 
 
