@@ -4,7 +4,6 @@ namespace BatAPI;
 
 abstract class Config
 {
-
     private static array $configs = [];
 
 
