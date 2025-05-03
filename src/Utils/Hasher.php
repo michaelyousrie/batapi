@@ -14,6 +14,11 @@ abstract class Hasher
         return password_hash($input, PASSWORD_BCRYPT);
     }
 
+    public static function bcryptMatches(string $input, string $hash): bool
+    {
+        return password_verify($input, $hash);
+    }
+
     public static function md5(string $input): string
     {
         return md5($input);
