@@ -13,7 +13,10 @@ class Route
     //  =========================== PARAMS ===========================
     private static array $acceptedParamTypes = [];
 
-    private array $middlewares = [];
+    private array $middlewares = [
+        'PRE' => [],
+        'POST' => []
+    ];
 
     //  =========================== PUBLIC METHODS ===========================
 
@@ -35,14 +38,31 @@ class Route
         return $this;
     }
 
-    public function middlewares(array $middlewares = []): array|Route
+    public function middlewares(?string $type = null): array
     {
-        if (empty($middlewares)) {
+        if (is_null($type)) {
             return $this->middlewares;
         }
 
-        $this->middlewares = $middlewares;
-        return $this;
+        return $this->middlewares[$type];
+    }
+
+    public function preHandlerMiddlewares(array $middlewares = []): array|Route
+    {
+        if (empty($middlewares)) {
+            return $this->middlewares['PRE'];
+        }
+
+        return $this->addMiddlewares('PRE', $middlewares);
+    }
+
+    public function postHandlerMiddlewares(array $middlewares = []): array|Route
+    {
+        if (empty($middlewares)) {
+            return $this->middlewares['POST'];
+        }
+
+        return $this->addMiddlewares('POST', $middlewares);
     }
 
     public function uriMatches(string $uri): bool
@@ -78,22 +98,34 @@ class Route
 
     public function call(): string
     {
-        foreach($this->middlewares() as $middleware) {
+        foreach($this->middlewares('PRE') as $middleware) {
             $middleware = new $middleware();
             $middleware->handle();
         }
 
         if ($this->callable instanceof Closure) {
-            return call_user_func($this->callable);
+            $response = call_user_func($this->callable);
+        } else if (is_array($this->callable)) {
+            $response = Controller::determine($this->callable);
+        } else {
+            dd('Unknown Callable type for this route.');
+            $response = null;
         }
 
-        if (is_array($this->callable)) {
-            return Controller::determine($this->callable);
+        foreach($this->middlewares('POST') as $middleware) {
+            $middleware = new $middleware();
+            $middleware->handle($response);
         }
 
-        dd('Unknown Callable type for this route.');
-        return false;
+        return $response;
     }
 
     //  =========================== INTERNAL METHODS ===========================
+
+    private function addMiddlewares(string $type, array $middlewares): Route
+    {
+        $this->middlewares[$type] = $middlewares;
+
+        return $this;
+    }
 }
