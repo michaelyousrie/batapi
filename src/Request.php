@@ -5,17 +5,13 @@ use BatAPI\Interfaces\Bootstrappable;
 
 abstract class Request implements Bootstrappable
 {
-    //  =========================== PARAMS ===========================
-
     private static array $data = [];
     private static array $query = [];
     private static array $headers = [];
     private static array $urlParams = [];
     private static array $custom = [];
-
     private static string $method = 'GET';
 
-    //  =========================== PUBLIC METHODS ===========================
 
     public static function bootstrap(): void
     {
@@ -94,7 +90,6 @@ abstract class Request implements Bootstrappable
         return "/" . trim(self::$headers['PHP_SELF'], '/');
     }
 
-    //  =========================== INTERNAL METHODS ===========================
 
     private static function bootstrapData(): void
     {

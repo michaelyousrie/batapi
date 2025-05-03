@@ -10,16 +10,13 @@ use function BatAPI\Utils\dd;
 
 class Route
 {
-    //  =========================== PARAMS ===========================
     private static array $acceptedParamTypes = [];
-
     private array $middlewares = [
         'PRE' => [],
         'POST' => []
     ];
 
-    //  =========================== PUBLIC METHODS ===========================
-
+    
     public function __construct(private string $uri, private mixed $callable)
     {
         foreach(array_keys(Validator::regexRules()) as $dataType) {
@@ -120,7 +117,6 @@ class Route
         return $response;
     }
 
-    //  =========================== INTERNAL METHODS ===========================
 
     private function addMiddlewares(string $type, array $middlewares): Route
     {

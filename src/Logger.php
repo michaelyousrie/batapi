@@ -6,10 +6,6 @@ use BatAPI\Utils\JSON;
 
 abstract class Logger
 {
-    //  =========================== PARAMS ===========================
-
-    //  =========================== PUBLIC METHODS ===========================
-
     public static function file(string $filename, array $data, string $level = 'debug'): void
     {
         $filename = Config::get('LOGS_PATH') . $filename . '.log';
@@ -28,8 +24,7 @@ abstract class Logger
 
         self::file($filename, $data, $level);
     }
-
-    //  =========================== INTERNAL METHODS ===========================
+    
 
     private static function format(array $data, string $level): string
     {

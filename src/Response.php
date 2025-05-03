@@ -6,10 +6,6 @@ use BatAPI\Utils\JSON;
 
 abstract class Response
 {
-    //  =========================== PARAMS ===========================
-
-    //  =========================== PUBLIC METHODS ===========================
-
     public static function raw(array $data, int $statusCode, array $headers = []): string
     {
         http_response_code($statusCode);
@@ -36,6 +32,4 @@ abstract class Response
     {
         return self::raw($data, 500, ['X_IS_DEBUGGING' => true]);
     }
-
-    //  =========================== INTERNAL METHODS ===========================
 }

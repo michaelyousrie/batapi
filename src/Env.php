@@ -6,16 +6,9 @@ use BatAPI\Interfaces\Bootstrappable;
 
 abstract class Env implements  Bootstrappable
 {
-    //  =========================== PARAMS ===========================
     private static array $env = [];
 
-    //  =========================== PUBLIC METHODS ===========================
 
-    /**
-     * Boostrap the Env component.
-     *
-     * @return void
-     */
     public static function bootstrap(): void
     {
         $envFilePath = Config::get('ROOT_PATH') . ".env";
@@ -42,17 +35,8 @@ abstract class Env implements  Bootstrappable
         }
     }
 
-    /**
-     * Get a value from the .env file.
-     *
-     * @param string $key
-     * @param mixed|null $fallback
-     * @return mixed
-     */
     public static function get(string $key, mixed $fallback = null): mixed
     {
         return self::$env[$key] ?? $fallback;
     }
-
-    //  =========================== INTERNAL METHODS ===========================
 }

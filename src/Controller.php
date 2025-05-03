@@ -5,10 +5,6 @@ use function BatAPI\Utils\dd;
 
 abstract class Controller
 {
-    //  =========================== PARAMS ===========================
-
-    //  =========================== PUBLIC METHODS ===========================
-
     public static function determine(array $identifier): string
     {
         if (!($identifier['0'] ?? false) or !($identifier[1] ?? false)) {
@@ -19,6 +15,4 @@ abstract class Controller
 
         return $class->{$identifier[1]}();
     }
-
-    //  =========================== INTERNAL METHODS ===========================
 }

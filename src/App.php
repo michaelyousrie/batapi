@@ -6,16 +6,6 @@ use BatAPI\Routing\Router;
 
 abstract class App implements Bootstrappable
 {
-    //  =========================== PARAMS ===========================
-
-
-    //  =========================== PUBLIC METHODS ===========================
-
-    /**
-     * Bootstraps a few components of the application to activate all the gears.
-     *
-     * @return void
-     */
     public static function bootstrap(): void
     {
         session_start();
@@ -29,11 +19,6 @@ abstract class App implements Bootstrappable
         Env::bootstrap();
     }
 
-    /**
-     * Start handling requests. Should return the final response to the user.
-     *
-     * @return string
-     */
     public static function start(): string
     {
         foreach(Router::routesFor(Request::method()) as $route) {
@@ -46,6 +31,4 @@ abstract class App implements Bootstrappable
             'message' => 'URL Not Found!'
         ]);
     }
-
-    //  =========================== INTERNAL METHODS ===========================
 }

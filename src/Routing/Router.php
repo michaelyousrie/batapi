@@ -6,8 +6,6 @@ use Closure;
 
 abstract class Router
 {
-    //  =========================== PARAMS ===========================
-
     private static array $routes = [
         'GET'       => [],
         'POST'      => [],
@@ -15,7 +13,6 @@ abstract class Router
         'DELETE'    => []
     ];
 
-    //  =========================== PUBLIC METHODS ===========================
 
     public static function get(string $uri, array | Closure $callable): Route
     {
@@ -52,8 +49,7 @@ abstract class Router
         return self::$routes[strtoupper($method)];
     }
 
-    //  =========================== INTERNAL METHODS ===========================
-
+    
     private static function addRoute(string $method, string $uri, mixed $callable): Route
     {
         $uri = "/" . trim($uri, '/');
