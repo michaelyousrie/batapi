@@ -7,7 +7,7 @@ abstract class Config
 
     private static array $configs = [];
 
-    
+
     public static function get(string $key, mixed $fallback = null): mixed
     {
         return self::$configs[$key] ?? $fallback;

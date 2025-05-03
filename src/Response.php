@@ -30,6 +30,6 @@ abstract class Response
 
     public static function debug(array $data): string
     {
-        return self::raw($data, 500, ['X_IS_DEBUGGING' => true]);
+        return self::raw($data, 500, ['BatAPI_IS_DEBUGGING' => true]);
     }
 }
