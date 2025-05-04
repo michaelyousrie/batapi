@@ -12,7 +12,11 @@ abstract class Response
         header('Content-Type: application/json');
 
         foreach($headers as $header => $value) {
-            header("{$header}: {$value}");
+            if (is_numeric($header)) {
+                header($value);
+            } else {
+                header("{$header}: {$value}");
+            }
         }
 
         return JSON::encode($data);
@@ -31,5 +35,10 @@ abstract class Response
     public static function debug(array $data): string
     {
         return self::raw($data, 500, ['BatAPI_IS_DEBUGGING' => true]);
+    }
+
+    public static function rateLimited(array $data = ['message' => 'Rate Limited. Try Again Later.']): string
+    {
+        return self::raw($data, 429, ['HTTP/1.1 429 Too Many Requests']);
     }
 }

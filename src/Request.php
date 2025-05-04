@@ -90,6 +90,17 @@ abstract class Request implements Bootstrappable
         return "/" . trim(self::$headers['PHP_SELF'], '/');
     }
 
+    public static function ip(): string
+    {
+        return self::$headers['REMOTE_ADDR'] ?? self::$headers['HTTP_X_FORWARDED_FOR'] ?? '';
+    }
+
+    public static function kill(string $response): void
+    {
+        echo $response;
+        exit;
+    }
+
 
     private static function bootstrapData(): void
     {

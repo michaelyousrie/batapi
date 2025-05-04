@@ -11,6 +11,6 @@ abstract class JSON
 
     public static function decode(string $json): array
     {
-        return json_decode($json, associative: true);
+        return json_decode($json, associative: true) ?? [];
     }
 }

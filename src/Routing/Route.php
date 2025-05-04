@@ -16,7 +16,7 @@ class Route
         'POST' => []
     ];
 
-    
+
     public function __construct(private string $uri, private mixed $callable)
     {
         foreach(array_keys(Validator::regexRules()) as $dataType) {
@@ -96,7 +96,6 @@ class Route
     public function call(): string
     {
         foreach($this->middlewares('PRE') as $middleware) {
-            $middleware = new $middleware();
             $middleware->handle();
         }
 
@@ -110,7 +109,6 @@ class Route
         }
 
         foreach($this->middlewares('POST') as $middleware) {
-            $middleware = new $middleware();
             $middleware->handle($response);
         }
 

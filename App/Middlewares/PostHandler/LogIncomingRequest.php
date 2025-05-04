@@ -12,6 +12,7 @@ class LogIncomingRequest extends PostHandlerMiddleware
     {
         Logger::dailyFile('incoming_requests', [
             'ID'        => Request::custom('id'),
+            'IP'        => Request::ip(),
             'method'    => Request::method(),
             'url'       => Request::uri(),
             'data'      => Request::data(),

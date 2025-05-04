@@ -1,6 +1,7 @@
 <?php
 namespace BatAPI;
 
+use BatAPI\DataSources\File;
 use BatAPI\Interfaces\Bootstrappable;
 use BatAPI\Routing\Router;
 
@@ -10,10 +11,10 @@ abstract class App implements Bootstrappable
     {
         session_start();
 
-        Config::set('ROOT_PATH', dirname(__DIR__)) . DIRECTORY_SEPARATOR;
-        Config::set('APP_PATH', dirname(__DIR__) . DIRECTORY_SEPARATOR . 'App' . DIRECTORY_SEPARATOR);
-        Config::set('LOGS_PATH', dirname(__DIR__) . DIRECTORY_SEPARATOR . 'Logs' . DIRECTORY_SEPARATOR);
-        Config::set('CONTROLLERS_PATH', dirname(__DIR__) . DIRECTORY_SEPARATOR . 'App' . DIRECTORY_SEPARATOR . 'Controllers'. DIRECTORY_SEPARATOR);
+        Config::set('ROOT_PATH', dirname(__DIR__));
+        Config::set('APP_PATH', File::constructPath([Config::get('ROOT_PATH'), 'App']));
+        Config::set('LOGS_PATH', File::constructPath([Config::get('ROOT_PATH'), 'Logs']));
+        Config::set('CONTROLLERS_PATH', File::constructPath([Config::get('APP_PATH'), 'Controllers']));
 
         Request::bootstrap();
         Env::bootstrap();
