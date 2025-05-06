@@ -20,6 +20,7 @@
     ],
     "minimum-stability": "stable",
     "require": {
-      "ext-curl": "*"
+      "ext-curl": "*",
+        "ext-pdo": "*"
     }
 }

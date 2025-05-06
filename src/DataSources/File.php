@@ -6,6 +6,10 @@ use BatAPI\Interfaces\DataSource;
 
 class File extends DataSource
 {
+    public function __construct(private mixed $source)
+    {
+    }
+
     public static function constructPath(array $paths): string
     {
         return implode(DIRECTORY_SEPARATOR, $paths);

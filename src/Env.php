@@ -2,6 +2,7 @@
 
 namespace BatAPI;
 
+use BatAPI\DataSources\File;
 use BatAPI\Interfaces\Bootstrappable;
 
 abstract class Env implements  Bootstrappable
@@ -11,7 +12,7 @@ abstract class Env implements  Bootstrappable
 
     public static function bootstrap(): void
     {
-        $envFilePath = Config::get('ROOT_PATH') . ".env";
+        $envFilePath = File::constructPath([Config::get('ROOT_PATH'), '.env']);
 
         if (file_exists($envFilePath)) {
             $vars = file_get_contents($envFilePath);
@@ -38,5 +39,10 @@ abstract class Env implements  Bootstrappable
     public static function get(string $key, mixed $fallback = null): mixed
     {
         return self::$env[$key] ?? $fallback;
+    }
+
+    public static function all(): array
+    {
+        return self::$env;
     }
 }
