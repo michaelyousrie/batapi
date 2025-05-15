@@ -9,11 +9,11 @@ use function BatAPI\Utils\dd;
 
 class MySQL extends DataSource
 {
-    private ?string $database = null;
-    private ?string $username = null;
-    private ?string $password = null;
-    private ?string $host = null;
-    private ?int $port = 3306;
+    private ?string $database;
+    private ?string $username;
+    private ?string $password;
+    private ?string $host;
+    private ?int $port;
     private string $table;
     private array $select = ['*'];
     private array $wheres = [];
