@@ -1,3 +1,7 @@
+# WORK IN PROGRESS
+
+This skeleton is still under construction.
+
 # BatAPI
 
 A micro PHP API Skeleton that is as versatile as batman's arsenal.
@@ -5,13 +9,13 @@ A micro PHP API Skeleton that is as versatile as batman's arsenal.
 
 ## What does BatAPI mean?
 
-It comes from Batman's world. Every tool in the batman arsenal was like "BatMobile", "BatComputer", "Batarang", "BatClaw", ... 
+It comes from Batman's world. Every tool in the batman arsenal was like "BatMobile", "BatComputer", "Batarang", "BatClaw", ...
 
 You get the idea.
 
 ## Description
 
-BatAPI is a lightweight PHP skeleton designed to be flexible and convenient to use. 
+BatAPI is a lightweight PHP skeleton designed to be flexible and convenient to use.
 It gives a basic PHP project structure to build JSON APIs blazingly fast.
 BatAPI tries to get out of your way as much as possible, its sole purpose is to make you focus on the application logic not the scaffolding.
 
@@ -52,10 +56,10 @@ BatAPI tries as much as possible to be self-sufficient. No external, third-party
 Writing all of its own internal components from scratch using pure PHP. That way, No dependency on third party is ever needed, no external, out of hand, security threats can be present (which means the only danger we face is our own) and finally, less code to maintain.
 
 ## Active development?
-Definitely. I'm actively working on this project and will publish updates almost daily until it's mature enough for me to use personally. 
+Definitely. I'm actively working on this project and will publish updates almost daily until it's mature enough for me to use personally.
 
 ## Contributions
 
 Definitely are most welcome!
 
-However, never try to turn BatAPI into a framework or something that is bigger than what the original intent of BatAPI is. 
+However, never try to turn BatAPI into a framework or something that is bigger than what the original intent of BatAPI is.
